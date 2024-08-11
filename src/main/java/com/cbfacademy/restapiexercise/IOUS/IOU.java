@@ -10,12 +10,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "ious")
+@Entity // IOU class is marked as an entitiy that will be stored in the database
+@Table(name = "ious") // Table name ious
 public class IOU {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id // Marks the id field as the primary key of the table
+    @GeneratedValue(strategy = GenerationType.AUTO) // Tells the table to automatically generate a unique value for the id field whenever a new IOU is added. GenerationType.AUTO will handle generating the ID
     private UUID id;
 
     private String borrower;
@@ -57,7 +57,7 @@ public class IOU {
         return amount;
     }
 
-    public void setAmount(BIgDecimal amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
