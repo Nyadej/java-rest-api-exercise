@@ -25,14 +25,16 @@ public class IOUController {
         this.iouService = iouService; // **constructor for the iouController class. It accepts a IOUService object and assigns it to the iouService variable. This allows the controller to use the service to perform business logic.
     }
 
-    @GetMapping // maps HTTP GET requests to this method. When someone sends a GET request to /api/ious/{id}, this method will be called.
+    // Mapped to the base path (/api/ious) and handles requests without any specific ID. It retrieves all IOUs.
+    @GetMapping // maps HTTP GET requests to this method. When someone sends a GET request to /api/ious, this method will be called. Retrieves and returns a list of all IOU objects.***
     public List<IOU> getAllIOUs() { // method returns a list of all IOUs. It calls the getAllIOUs() method from IOUService to retrieve the list.
-        return iouService.getAllIOUs(); // retrieves the list of IOUs from the service and sends it back as the response.
+        return iouService.getAllIOUs(); // retrieves the list of IOUs from the service and sends it back as the response in JSON format.
     }
 
-    @GetMapping(path = "/{id}") // to retrieve speciific IOU by ID. mentor - different to demo, ensure you understand why
-    public IOU getIOU(@PathVariable UUID id) {
-        return iouService.getIOU(id);
+    // Mapped to a path that includes an ID (/api/ious/{id}). It retrieves a specific IOU by its ID.
+    @GetMapping(path = "/{id}") // maps HTTP GET requests to this method. When someone sends a GET request to /api/ious/{id}, this method will be called. Retrieves and returns a specific IOU object by its unique ID.***
+    public IOU getIOU(@PathVariable UUID id) { // @PathVariable UUID id annotation tells Spring to extract the id from the URL path and pass it as a parameter to the method. The method then calls iouService.getIOU(id) to fetch the IOU with the specified ID.
+        return iouService.getIOU(id).orElseThrow(NoSuchElementException::new); // The specific IOU object is returned as the HTTP response in JSON format. Or an exception is thrown if the IOU cannot be found by its ID.
     }
 
     // TO ADD A NEW IOU
@@ -42,9 +44,9 @@ public class IOUController {
         iouService.createIOU(iou);
     }
 
-    @PutMapping(path = "/{id}") // for updating an existing IOU. mentor - different to demo, ensure you understand why
-    public IOU updateIOU(@PathVariable UUID id, @RequestBody IOU updatedIOU) {
-        return iouService.updateIOU(id, updatedIOU);
+    @PutMapping(path = "/{id}") // maps HTTP PUT requests for this method - for updating an existing IOU with a specified ID. 
+    public IOU updateIOU(@PathVariable UUID id, @RequestBody IOU updatedIOU) { // @PathVariable UUID id annotation tells Spring to extract the id from the URL path and @ResponseBody tells the controller that the object/id returned is automatically serialised into JSON and then passed back as a parameter to the method. 
+        return iouService.updateIOU(id, updatedIOU); // The method then calls iouService.updateIOU to fetch the IOU with the updated specified ID.
     }
 
     @DeleteMapping(path = "/api/ious/{id}") // maps HTTP DELETE requests to this method. The path = "/api/ious/{id}" part indicates that this method will respond to a URL that contains a Id (like /api/ious/{id}).
