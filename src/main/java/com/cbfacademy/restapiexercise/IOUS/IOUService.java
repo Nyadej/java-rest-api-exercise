@@ -48,5 +48,9 @@ public class IOUService  {
 
         iouRepository.deleteById(id); // If the ID exists, this line deletes it from the database
     }
+
+    public List<IOU> getIOUsByBorrower(String borrower) {
+        return iouRepository.findByBorrower(borrower);
+    }
     
 }
