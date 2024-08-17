@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController // Indicates that this class is a Spring REST controller, meaning it handles HTTP requests.
@@ -27,8 +28,12 @@ public class IOUController {
 
     // Mapped to the base path (/api/ious) and handles requests without any specific ID. It retrieves all IOUs.
     @GetMapping // maps HTTP GET requests to this method. When someone sends a GET request to /api/ious, this method will be called. Retrieves and returns a list of all IOU objects.***
-    public List<IOU> getAllIOUs() { // method returns a list of all IOUs. It calls the getAllIOUs() method from IOUService to retrieve the list.
-        return iouService.getAllIOUs(); // retrieves the list of IOUs from the service and sends it back as the response in JSON format.
+    public List<IOU> getAllIOUs(@RequestParam(required = false) String borrower) { // method returns a list of all IOUs. It calls the getAllIOUs() method from IOUService to retrieve the list.
+        if (borrower !=null) { // If the borrower is provided (not null)
+            return iouService.getIOUsByBorrower(borrower); // return only IOUs that belong to this specific borrower
+        } else { // If the borrower is not provided (null)
+        return iouService.getAllIOUs(); // retrieves the list of ALL IOUs from the service and sends it back as the response in JSON format.
+        }
     }
 
     // Mapped to a path that includes an ID (/api/ious/{id}). It retrieves a specific IOU by its ID.
