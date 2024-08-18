@@ -47,9 +47,9 @@ public class IOUController {
         return iouService.getHighValueIOUs();
     }
 
-    @GetMapping("/low") // Mapped to a path (/low). This then calls the getBelowValueIOUs() method in the service layer to call the method in the repository and get the below value IOUs 
-    public List<IOU> getBelowValueIOUs() {
-        return iouService.getHighValueIOUs();
+    @GetMapping("/low") // Mapped to a path (/low). This then calls the getBelowOrEqualValueIOUs() method in the service layer to call the method in the repository and get the below value IOUs or equal to the average value
+    public List<IOU> getBelowOrEqualValueIOUs() {
+        return iouService.getBelowOrEqualValueIOUs();
     }
 
     // TO ADD A NEW IOU
