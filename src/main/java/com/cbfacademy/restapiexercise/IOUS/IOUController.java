@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController // Indicates that this class is a Spring REST controller, meaning it handles HTTP requests.
-@RequestMapping(path = "api/ious") // (Sets the base URL path for this controller)
+@RequestMapping(path = "/api/ious") // (Sets the base URL path for this controller)
 public class IOUController { 
 
     private final IOUService iouService; // This is a reference to the service layer that handles the business logic
