@@ -53,8 +53,12 @@ public class IOUService  {
         return iouRepository.findByBorrower(borrower);
     }
 
-    public List<IOU> getHighValueIOUs() { // Method calls the findHIghValueIOUs() method from the repository to get the high value IOUs
+    public List<IOU> getHighValueIOUs() { // Method calls the findHighValueIOUs() method from the repository to get the high value IOUs
         return iouRepository.findHighValueIOUs();
+    }
+
+    public List<IOU> getBelowValueIOUs() { // Method calls the findBelowValueIOUs() method from the repository to get the below value IOUs
+        return iouRepository.findBelowValueIOUs();
     }
     
 }
