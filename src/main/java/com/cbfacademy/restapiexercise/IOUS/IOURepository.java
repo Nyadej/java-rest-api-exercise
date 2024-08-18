@@ -12,7 +12,7 @@ public interface IOURepository extends ListCrudRepository<IOU, UUID> {
     
     List<IOU> findByBorrower(String borrower); // Returning a list of IOUs for each borrower
 
-    @Query(value = "SELECT * FROM ious WHERE ious.value > (SELECT AVG(ious.value) FROM ious)", nativeQuery = true)
+    @Query(value = "SELECT * FROM ious WHERE amount > (SELECT AVG(amount) FROM ious)", nativeQuery = true)
     List<IOU> findHighValueIOUs();
 
 }
