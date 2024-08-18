@@ -47,6 +47,11 @@ public class IOUController {
         return iouService.getHighValueIOUs();
     }
 
+    @GetMapping("/low") // Mapped to a path (/low). This then calls the getBelowValueIOUs() method in the service layer to call the method in the repository and get the below value IOUs 
+    public List<IOU> getBelowValueIOUs() {
+        return iouService.getHighValueIOUs();
+    }
+
     // TO ADD A NEW IOU
     @PostMapping // maps HTTP POST requests to this method. When someone sends a POST request to /api/ious, this method will be called.
     // method registers a new IOU
