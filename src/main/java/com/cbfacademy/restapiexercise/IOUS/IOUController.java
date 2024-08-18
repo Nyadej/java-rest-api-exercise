@@ -42,6 +42,11 @@ public class IOUController {
         return iouService.getIOU(id).orElseThrow(NoSuchElementException::new); // The specific IOU object is returned as the HTTP response in JSON format. Or an exception is thrown if the IOU cannot be found by its ID.
     }
 
+    @GetMapping("/high") // Mapped to a path (/high). This then calls the getHighValueIOUs() method in the service layer to call the method in the repository and get the high value IOUs 
+    public List<IOU> getHighValueIOUs() {
+        return iouService.getHighValueIOUs();
+    }
+
     // TO ADD A NEW IOU
     @PostMapping // maps HTTP POST requests to this method. When someone sends a POST request to /api/ious, this method will be called.
     // method registers a new IOU
@@ -58,5 +63,6 @@ public class IOUController {
     public void deleteIOU(@PathVariable("id") UUID id) { // method deletes a student based on their ID. The @PathVariable annotation tells Spring to take the Id from the URL and pass it to this method.
         iouService.deleteIOU(id); // calls the deleteIOU() method from IOUService to delete the student from the database.
     }
+
 }
 
