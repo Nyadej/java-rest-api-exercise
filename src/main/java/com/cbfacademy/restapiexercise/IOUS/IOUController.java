@@ -59,7 +59,7 @@ public class IOUController {
         return iouService.updateIOU(id, updatedIOU); // The method then calls iouService.updateIOU to fetch the IOU with the updated specified ID.
     }
 
-    @DeleteMapping(path = "/api/ious/{id}") // maps HTTP DELETE requests to this method. The path = "/api/ious/{id}" part indicates that this method will respond to a URL that contains a Id (like /api/ious/{id}).
+    @DeleteMapping(path = "/{id}") // maps HTTP DELETE requests to this method. The path = "/api/ious/{id}" part indicates that this method will respond to a URL that contains a Id (like /api/ious/{id}).
     public void deleteIOU(@PathVariable("id") UUID id) { // method deletes a student based on their ID. The @PathVariable annotation tells Spring to take the Id from the URL and pass it to this method.
         iouService.deleteIOU(id); // calls the deleteIOU() method from IOUService to delete the student from the database.
     }
