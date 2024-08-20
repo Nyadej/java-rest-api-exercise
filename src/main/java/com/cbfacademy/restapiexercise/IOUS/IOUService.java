@@ -31,7 +31,7 @@ public class IOUService  {
         iouRepository.save(iou);
     }
 
-    IOU updateIOU(UUID id, IOU updatedIOU) throws NoSuchElementException {
+    public IOU updateIOU(UUID id, IOU updatedIOU) throws NoSuchElementException {
         if (iouRepository.existsById(id)) { // Checking if there is an pre-existing IOU with this ID, if there isn't the following line is
             updatedIOU.setId(id); // updating the IOU with the new ID
             return iouRepository.save(updatedIOU); // Saving the new ID to an updated IOU and returning the updated IOU
