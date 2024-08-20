@@ -37,9 +37,9 @@ public class IOUController {
     }
 
     // Mapped to a path that includes an ID (/api/ious/{id}). It retrieves a specific IOU by its ID.
-    @GetMapping(path = "/{id}") // maps HTTP GET requests to this method. When someone sends a GET request to /api/ious/{id}, this method will be called. Retrieves and returns a specific IOU object by its unique ID.***
+    @GetMapping(path = "/id/{id}") // maps HTTP GET requests to this method. When someone sends a GET request to /api/ious/{id}, this method will be called. Retrieves and returns a specific IOU object by its unique ID.***
     public IOU getIOU(@PathVariable UUID id) { // @PathVariable UUID id annotation tells Spring to extract the id from the URL path and pass it as a parameter to the method. The method then calls iouService.getIOU(id) to fetch the IOU with the specified ID.
-        return iouService.getIOU(id).orElseThrow(NoSuchElementException::new); // The specific IOU object is returned as the HTTP response in JSON format. Or an exception is thrown if the IOU cannot be found by its ID.
+        return iouService.getIOU(id).orElseThrow(NoSuchElementException::new); // ***The specific IOU object is returned as the HTTP response in JSON format. Or an exception is thrown if the IOU cannot be found by its ID.
     }
 
     @GetMapping("/high") // Mapped to a path (/high). This then calls the getHighValueIOUs() method in the service layer to call the method in the repository and get the high value IOUs 
